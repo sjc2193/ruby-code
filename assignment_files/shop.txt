@@ -3,7 +3,7 @@ Green-Incense   2.00    15
 Blue-Incense    2.00    5
 Plain-Burner    4.00    20
 Ornate-Burner   15.00   10
-Cones-Incense           20
+Cones-Incense   3.00    20
 Crystal-small   5.00    20
 Crystal-large   20.00   10
 Dreamcatcher    5.00    20

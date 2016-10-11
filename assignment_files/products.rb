@@ -1,22 +1,20 @@
-class Products
+require_relative 'shop.rb'
+
+class Product
+  attr_reader :name
+  attr_reader :stock
+  attr_reader :gross
+  attr_reader :price
+
   def initialize(name,price,stock)
-    @name,@price,@stock=name,price,stock
+    @name=name
+    @price=price
+    @stock=stock
     @gross=@price*1.2
   end
 
-  def getName
-    @name
-  end
-  def getPrice
-    @price
-  end
-  def getStock
-    @stock
-  end
-  def getGross
-    @gross
-  end
-  def sellStock(num)
-    @stock-=num
+
+  def printer()
+    "#{name} - #{stock} - #{price}"
   end
 end

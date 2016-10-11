@@ -1,50 +1,34 @@
+require_relative 'products.rb'
+
 class Shop
   def initialize
-    products=[]
-    i=0
-    file="data.txt"
-    f=File.open(file, "r")
+    @goods = []
+  end
 
-    f.each_line do |line|
-      if line!=""
-        data=line.split
-        puts"#{data[0]} - #{data[1]} - #{data[2]}"
-        if (data[0]!="")
-          name=data[0]
-        else
-          next
-        end
+  def add_goods new_item
+    @goods.push new_item
+  end
 
-        if (data[1]!="")
-          cost=data[1].to_f
-        else
-          cost=no_data(1,data[0])
-        end
-
-        if (data[2]!="")
-          stock=data[2]
-        else
-          stock=no_data(2,data[0])
-        end
-          puts"#{i} - #{name} - #{cost} - #{stock}"
-        products[i]=new Products(name,cost,stock)
-
-          i+=1
-    end
-    f.close
+  def average
+    @goods.inject(0) do |total_gross, items|
+      total_gross += items.gross/@goods.count
     end
   end
 
-  def no_data(code,name)
-    if(code==1)
-      puts "Please enter a price for product: #{name}"
-      stdout.flush
-      return chomp()
-    else
-      puts "Please enter Stock for product: #{name}"
-      stdout.flush
-      return chomp()
+  def net
+    @goods.inject(0) do |total_net, items|
+      total_net += items.stock * items.price
     end
-
   end
+
+  def sort
+    @goods.sort! { |a,b| a.name <=> b.name }
+  end
+
+  def to_s
+    @goods.inject("") do |output_string, items|
+      output_string += "#{items.name} #{items.gross.round(2)}" + "\n"
+    end
+  end
+
 end
